@@ -3,6 +3,7 @@ import { Homepage } from './features/pages/homepage/homepage';
 import { Services } from './features/pages/services/services';
 import { Careers } from './features/pages/careers/careers';
 import { Contact } from './features/pages/contact/contact';
+import { MyanglishTranslator } from './features/pages/myanglish-translator/myanglish-translator';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: Contact
+  },
+  {
+    path: 'myanglish-translator',
+    component: MyanglishTranslator
   }
 ]

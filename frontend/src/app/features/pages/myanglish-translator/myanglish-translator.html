@@ -1,0 +1,80 @@
+<div class="max-w-6xl mx-auto p-6">
+  <!-- Page Title -->
+  <h1 class="text-4xl font-bold text-gray-900 mb-6 text-center">Myanglish Translator</h1>
+
+  <!-- Combined App Overview + Translator Card -->
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6 relative">
+    <!-- App Overview -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-3">App Overview</h2>
+      <p class="text-gray-700 text-sm mb-2">
+        Myanglish Translator is an advanced AI-powered language translation application specifically designed to bridge communication
+        between Myanglish and Burmese. Leveraging state-of-the-art machine learning algorithms, the app delivers highly accurate
+        translations while maintaining the context and nuances of the original text.
+      </p>
+    </div>
+
+    <!-- Translator Interface -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Source Text -->
+      <div class="bg-gray-50 shadow-inner rounded-lg p-4 flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+          <select [(ngModel)]="sourceLanguage" class="border border-gray-300 rounded px-3 py-1 bg-white focus:ring-2 focus:ring-indigo-500">
+            <option [ngValue]="{code:'my', name:'Myanglish', flag:'🇲🇲'}">🇲🇲 Myanglish</option>
+            <option [ngValue]="{code:'bm', name:'Burmese', flag:'🇲🇲'}">🇲🇲 Burmese</option>
+          </select>
+          <span class="text-gray-500 font-medium">Source</span>
+        </div>
+        <textarea
+          [(ngModel)]="sourceText"
+          rows="8"
+          class="border border-gray-300 rounded-lg p-3 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+          placeholder="Enter text here..."
+        ></textarea>
+      </div>
+
+      <!-- Target Text -->
+      <div class="bg-gray-50 shadow-inner rounded-lg p-4 flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+          <select [(ngModel)]="targetLanguage" class="border border-gray-300 rounded px-3 py-1 bg-white focus:ring-2 focus:ring-indigo-500">
+            <option [ngValue]="{code:'my', name:'Myanglish', flag:'🇲🇲'}">🇲🇲 Myanglish</option>
+            <option [ngValue]="{code:'bm', name:'Burmese', flag:'🇲🇲'}">🇲🇲 Burmese</option>
+          </select>
+          <span class="text-gray-500 font-medium">Target</span>
+        </div>
+        <textarea
+          [value]="translatedText"
+          rows="8"
+          class="border border-gray-300 rounded-lg p-3 resize-none bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+          readonly
+          placeholder="Translated text"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Swap Button (Left-Right Arrows) -->
+     <button
+      (click)="swapLanguages()"
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition"
+      title="Swap languages"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M21 12H3"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4 4-4M3 12h18"/>
+      </svg>
+    </button>
+
+    <!-- Translate Button -->
+    <div class="flex justify-center mt-6">
+      <button
+        (click)="translate()"
+        class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md flex items-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Translate
+      </button>
+    </div>
+  </div>
+</div>
