@@ -1,0 +1,90 @@
+<header
+  class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+
+    <!-- Logo -->
+    <a
+      routerLink="/"
+      class="text-xl font-semibold tracking-tight text-gray-900 hover:text-indigo-600 transition">
+      <span class="font-bold">Metateam</span>
+      <span class="text-indigo-600"> AI Labs</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+
+      <a href="#who-we" class="hover:text-indigo-600 transition">Who We Are?</a>
+      <a href="#about" class="hover:text-indigo-600 transition">About</a>
+      <a routerLink="/services" class="hover:text-indigo-600 transition">Services</a>
+      <a routerLink="/careers" class="hover:text-indigo-600 transition">Careers</a>
+      <a
+        routerLink="/contact"
+        class="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 transition">
+        Contact
+      </a>
+
+      <!-- Language Dropdown -->
+      <div class="relative" (mouseleave)="isLangOpen=false">
+        <button
+          (click)="isLangOpen = !isLangOpen"
+          class="flex items-center gap-1 px-3 py-2 border rounded-md hover:bg-gray-100 transition">
+          <span [innerHTML]="selectedLang.svg"></span>
+          {{ selectedLang.name }}
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <ul
+          *ngIf="isLangOpen"
+          class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden z-50">
+          <li *ngFor="let lang of languages" (click)="selectLanguage(lang)"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 cursor-pointer"
+          >
+            <span [innerHTML]="lang.svg"></span> {{ lang.name }}
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100"
+      (click)="toggleMenu()">
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div *ngIf="isMenuOpen" class="md:hidden border-t border-gray-200 bg-white">
+    <nav class="flex flex-col gap-4 px-6 py-4 text-sm font-medium text-gray-700">
+      <a href="#who-we" (click)="closeMenu()">Who We Are?</a>
+      <a href="#about" (click)="closeMenu()">About</a>
+      <a routerLink="/services" (click)="closeMenu()">Services</a>
+      <a routerLink="/careers" (click)="closeMenu()">Careers</a>
+      <a
+        routerLink="/contact"
+        (click)="closeMenu()"
+        class="rounded-md bg-indigo-600 px-4 py-2 text-white text-center">
+        Contact
+      </a>
+
+      <!-- Mobile Language Dropdown -->
+      <div class="mt-2">
+        <label class="block text-gray-500 mb-1">Language</label>
+        <select [(ngModel)]="selectedLang" class="w-full border rounded-md px-2 py-1">
+          <option *ngFor="let lang of languages" [ngValue]="lang">{{ lang.name }}</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
