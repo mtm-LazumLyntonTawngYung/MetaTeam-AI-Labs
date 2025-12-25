@@ -1,0 +1,83 @@
+<section class="bg-gray-50 py-20 px-6">
+
+  <!-- Hero Section -->
+  <div class="max-w-5xl mx-auto text-center mb-16">
+    <h1 class="text-5xl font-extrabold text-gray-900">
+      Careers at Metateam AI Labs
+    </h1>
+    <p class="mt-4 text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+      Join our team of innovative professionals working on AI, software, and digital solutions.
+      Explore open positions and grow your career with us.
+    </p>
+  </div>
+
+  <!-- Company Info Sections -->
+  <div class="max-w-6xl mx-auto mb-16 space-y-12">
+    <div>
+      <h2 class="text-3xl font-bold text-indigo-600 mb-4">Why Work With Us</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Collaborate with a talented team on cutting-edge AI and software projects. We value creativity, innovation, and professional growth.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-3xl font-bold text-indigo-600 mb-4">Benefits & Culture</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Flexible working hours, remote work opportunities, learning and development programs, and a supportive, inclusive environment.
+      </p>
+    </div>
+  </div>
+
+  <!-- Open Positions Table -->
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">Open Positions</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border rounded-xl shadow-sm overflow-hidden">
+        <thead class="bg-indigo-600 text-white">
+          <tr>
+            <th class="text-left py-3 px-6 font-medium">Position</th>
+            <th class="text-left py-3 px-6 font-medium">Location</th>
+            <th class="text-left py-3 px-6 font-medium">Type</th>
+            <th class="text-left py-3 px-6 font-medium">Status</th>
+            <th class="text-left py-3 px-6 font-medium">Description</th>
+            <th class="text-left py-3 px-6 font-medium">Apply</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <tr *ngFor="let job of openPositions" class="hover:bg-gray-50 transition">
+            <td class="py-4 px-6 font-semibold text-gray-800">{{ job.title }}</td>
+            <td class="py-4 px-6 text-gray-700">{{ job.location }}</td>
+            <td class="py-4 px-6 text-gray-700">{{ job.type }}</td>
+
+            <!-- Status Badge -->
+            <td class="py-4 px-6">
+              <span
+                class="px-3 py-1 rounded-full text-sm font-medium"
+                [ngClass]="{
+                  'bg-green-100 text-green-800': job.status === 'Opened',
+                  'bg-red-100 text-red-800': job.status === 'Expired'
+                }">
+                {{ job.status }}
+              </span>
+            </td>
+
+            <td class="py-4 px-6 text-gray-700">{{ job.description }}</td>
+
+            <!-- Apply Button -->
+            <td class="py-4 px-6">
+              <a
+                *ngIf="job.status === 'Opened'"
+                href="{{ job.applyLink }}"
+                class="inline-block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
+                target="_blank"
+                rel="noopener">
+                Apply
+              </a>
+              <span *ngIf="job.status === 'Expired'" class="text-gray-400 font-medium">Closed</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>

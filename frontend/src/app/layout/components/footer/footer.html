@@ -1,54 +1,79 @@
-<footer class="border-t border-gray-200 bg-gray-50">
-  <div class="mx-auto max-w-7xl px-6 py-10">
+<footer class="bg-gray-100 border-t border-gray-200 text-gray-700">
+  <div class="mx-auto max-w-7xl px-6 py-20">
 
-    <!-- Top section -->
-    <div class="grid gap-8 md:grid-cols-3">
+    <!-- Top Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16">
 
-      <!-- Brand -->
-      <div>
-        <h3 class="text-lg font-semibold text-gray-900">
+      <!-- Brand & Description -->
+      <div class="space-y-4">
+        <h3 class="text-2xl font-semibold text-gray-900">
           Metateam <span class="text-indigo-600">AI Labs</span>
         </h3>
-        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-          Building practical AI solutions that solve real-world problems
-          through innovation, research, and engineering excellence.
+        <p class="text-sm text-gray-600 leading-relaxed">
+          We build high-quality AI and IT solutions rooted in innovation, reliability, and world-class standards.
         </p>
       </div>
 
-      <!-- Navigation -->
-      <div>
-        <h4 class="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-          Company
-        </h4>
-        <ul class="mt-4 space-y-2 text-sm text-gray-600">
-          <li><a href="#who-we" class="hover:text-indigo-600">Who We Are?</a></li>
-          <li><a href="#about" class="hover:text-indigo-600">About</a></li>
-          <li><a routerLink="/services" class="hover:text-indigo-600">Services</a></li>
-          <li><a routerLink="/careers" class="hover:text-indigo-600">Careers</a></li>
-          <li><a routerLink="/contact" class="hover:text-indigo-600">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact / Legal -->
-      <div>
-        <h4 class="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+      <!-- Legal & Resources -->
+      <div class="space-y-4">
+        <h4 class="font-semibold text-gray-900 text-sm uppercase tracking-wide">
           Legal
         </h4>
-        <ul class="mt-4 space-y-2 text-sm text-gray-600">
-          <li><a routerLink="/privacy" class="hover:text-indigo-600">Privacy Policy</a></li>
-          <li><a routerLink="/terms" class="hover:text-indigo-600">Terms of Service</a></li>
+        <ul class="space-y-2 text-sm">
+          <li><a routerLink="/privacy" class="hover:text-indigo-600 transition">Privacy Policy</a></li>
+          <li><a routerLink="/terms" class="hover:text-indigo-600 transition">Terms of Service</a></li>
+          <li><a routerLink="/cookie" class="hover:text-indigo-600 transition">Cookie Policy</a></li>
+          <li><a routerLink="/disclaimer" class="hover:text-indigo-600 transition">Disclaimer</a></li>
         </ul>
       </div>
+
+      <!-- Social / Contact -->
+      <div class="space-y-4">
+        <h4 class="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+          Connect with Us
+        </h4>
+        <div class="flex items-center gap-4">
+          <a href="https://facebook.com/metateam" target="_blank" class="text-gray-500 hover:text-indigo-600 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 5 3.657 9.128 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.196 2.238.196v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 17 22 12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/company/metateam" target="_blank" class="text-gray-500 hover:text-indigo-600 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.1h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.65 4.78 6.1V24h-4V14c0-2.42-.05-5.52-3.37-5.52-3.37 0-3.88 2.63-3.88 5.35V24h-4V8.5z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/metateam" target="_blank" class="text-gray-500 hover:text-indigo-600 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 0 0-8.38 4.482A13.944 13.944 0 0 1 1.671 3.149a4.902 4.902 0 0 0 1.523 6.573 4.903 4.903 0 0 1-2.229-.616v.06a4.917 4.917 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.224.084 4.922 4.922 0 0 0 4.6 3.417A9.867 9.867 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.01-7.504 14.01-14.01 0-.213-.004-.425-.014-.636A10.025 10.025 0 0 0 24 4.557z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Subscription -->
+      <div class="space-y-4">
+        <h4 class="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+          Subscribe
+        </h4>
+        <p class="text-gray-600 text-sm">
+          Get the latest updates and AI insights directly in your inbox.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-xs" required>
+          <button type="submit" class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
     </div>
 
-    <!-- Bottom bar -->
-    <div class="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
-      Copyright © {{ currentYear }}
-      <span class="font-medium text-gray-700">
-        METATEAM MYANMAR Co., Ltd.
-      </span>
+    <!-- Bottom Bar -->
+    <div class="mt-16 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
+      &copy; {{ currentYear }}
+      <span class="font-medium text-gray-700">METATEAM MYANMAR Co., Ltd.</span>
       All rights reserved.
     </div>
-
   </div>
 </footer>
