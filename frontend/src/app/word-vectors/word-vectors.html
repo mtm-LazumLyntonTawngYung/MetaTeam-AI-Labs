@@ -1,77 +1,209 @@
 <div class="min-h-screen bg-gray-50 pt-24">
   <!-- Header -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <h1 class="text-3xl font-bold text-gray-900">Word Embeddings</h1>
-    <p class="mt-2 text-gray-600">Generate vector representations for words in sentences</p>
+    <h1 class="text-3xl font-bold text-gray-900">FastText Operations</h1>
+    <p class="mt-2 text-gray-600">Explore word embeddings with subword information, similarities, and find related words using FastText</p>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Overview Section -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-      <h2 class="text-xl font-semibold text-gray-900 mb-4">Word Embeddings - Overview</h2>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">FastText Operations - Overview</h2>
       <div class="space-y-4 text-gray-700">
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Function Description</h3>
-          <p class="text-sm">Word embeddings transform words into numerical vectors that capture semantic meaning. Similar words have similar vector representations.</p>
+          <p class="text-sm">FastText is an extension of Word2Vec that incorporates subword information, allowing it to handle out-of-vocabulary words and capture morphological similarities. It represents words as bags of character n-grams, enabling better generalization.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Available Operations</h3>
+          <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+            <li><strong>Word Embeddings:</strong> Generate vector representations for individual words, including subword contributions</li>
+            <li><strong>Word Similarity:</strong> Calculate cosine similarity between two words</li>
+            <li><strong>Similar Words:</strong> Find words most similar to a target word</li>
+          </ul>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">How to Use</h3>
           <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
-            <li>Enter a sentence in the input field</li>
-            <li>Click "Generate Embeddings" to process</li>
-            <li>View vector representations for each word</li>
+            <li>Select the desired operation using the tabs below</li>
+            <li>Enter the required input (words, word pairs, etc.)</li>
+            <li>Click the process button to generate results</li>
+            <li>View the output in the results section</li>
           </ol>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Output Information</h3>
           <ul class="list-disc list-inside space-y-1 text-sm ml-4">
-            <li>Individual word vectors (typically 300-768 dimensions)</li>
-            <li>Vector values displayed as arrays</li>
-            <li>Word-by-word breakdown of the sentence</li>
+            <li>Vector representations (300 dimensions), with subword vector details</li>
+            <li>Similarity scores between 0 and 1</li>
+            <li>Lists of similar words with their similarity scores</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Main Interface -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- Input Section -->
-      <div class="space-y-4">
-        <h4 class="font-medium text-gray-900">Input Sentence</h4>
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <textarea
-            [(ngModel)]="inputSentence"
-            rows="6"
-            class="w-full border border-gray-300 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-            placeholder="Enter a sentence here..."></textarea>
 
+    <!-- Main Interface -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <!-- Operation Tabs -->
+      <nav class="flex space-x-4 mb-6">
+        <button
+          (click)="selectedOperation = 'embeddings'"
+          [class.active]="selectedOperation === 'embeddings'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-indigo-600]="selectedOperation === 'embeddings'"
+          [class.text-white]="selectedOperation === 'embeddings'"
+          [class.bg-gray-200]="selectedOperation !== 'embeddings'"
+          [class.text-gray-700]="selectedOperation !== 'embeddings'">
+          Word Embeddings
+        </button>
+        <button
+          (click)="selectedOperation = 'similarity'"
+          [class.active]="selectedOperation === 'similarity'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-indigo-600]="selectedOperation === 'similarity'"
+          [class.text-white]="selectedOperation === 'similarity'"
+          [class.bg-gray-200]="selectedOperation !== 'similarity'"
+          [class.text-gray-700]="selectedOperation !== 'similarity'">
+          Word Similarity
+        </button>
+        <button
+          (click)="selectedOperation = 'similar'"
+          [class.active]="selectedOperation === 'similar'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-indigo-600]="selectedOperation === 'similar'"
+          [class.text-white]="selectedOperation === 'similar'"
+          [class.bg-gray-200]="selectedOperation !== 'similar'"
+          [class.text-gray-700]="selectedOperation !== 'similar'">
+          Similar Words
+        </button>
+      </nav>
+
+      <!-- Input Section -->
+      <div class="space-y-4 mb-8">
+        <h4 class="font-medium text-gray-900">Input</h4>
+        <!-- Word Embeddings Input -->
+        <div *ngIf="selectedOperation === 'embeddings'">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Enter a word</label>
+          <input
+            [(ngModel)]="inputWord"
+            type="text"
+            class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+            placeholder="e.g., hello"
+            aria-label="Enter a word to generate its embedding">
           <button
             (click)="generateEmbeddings()"
-            [disabled]="isProcessing || !inputSentence.trim()"
-            class="mt-4 w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
-            {{ isProcessing ? 'Generating...' : 'Generate Embeddings' }}
+            [disabled]="isProcessing || !inputWord.trim()"
+            [attr.aria-busy]="isProcessing"
+            class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
+            aria-label="Generate word embedding">
+            {{ isProcessing ? 'Generating...' : 'Generate Embedding' }}
+          </button>
+        </div>
+
+        <!-- Word Similarity Input -->
+        <div *ngIf="selectedOperation === 'similarity'">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Word 1</label>
+              <input
+                [(ngModel)]="word1"
+                type="text"
+                class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+                placeholder="e.g., king"
+                aria-label="First word for similarity calculation">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Word 2</label>
+              <input
+                [(ngModel)]="word2"
+                type="text"
+                class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+                placeholder="e.g., queen"
+                aria-label="Second word for similarity calculation">
+            </div>
+          </div>
+          <button
+            (click)="calculateSimilarity()"
+            [disabled]="isProcessing || !word1.trim() || !word2.trim()"
+            [attr.aria-busy]="isProcessing"
+            class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
+            aria-label="Calculate similarity between two words">
+            {{ isProcessing ? 'Calculating...' : 'Calculate Similarity' }}
+          </button>
+        </div>
+
+        <!-- Similar Words Input -->
+        <div *ngIf="selectedOperation === 'similar'">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Target word</label>
+          <input
+            [(ngModel)]="targetWord"
+            type="text"
+            class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
+            placeholder="e.g., happy"
+            aria-label="Target word to find similar words">
+          <button
+            (click)="findSimilarWords()"
+            [disabled]="isProcessing || !targetWord.trim()"
+            [attr.aria-busy]="isProcessing"
+            class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
+            aria-label="Find words similar to the target word">
+            {{ isProcessing ? 'Finding...' : 'Find Similar Words' }}
           </button>
         </div>
       </div>
 
       <!-- Results Section -->
       <div class="space-y-4">
-        <h4 class="font-medium text-gray-900">Embedding Results</h4>
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div *ngIf="embeddingResults.length > 0" class="space-y-4 max-h-96 overflow-y-auto">
-            <div *ngFor="let result of embeddingResults" class="border rounded-lg p-4">
-              <h5 class="font-medium text-gray-900 mb-2">{{ result.word }}</h5>
-              <div class="text-xs text-gray-600 mb-2">
-                Vector ({{ result.vector.length }} dimensions):
-              </div>
-              <div class="bg-gray-50 rounded p-3 text-xs font-mono overflow-x-auto">
-                [{{ result.vector.slice(0, 10).join(', ') }}{{ result.vector.length > 10 ? ', ...' : '' }}]
+        <h4 class="font-medium text-gray-900">Results</h4>
+        <!-- Embedding Results -->
+        <div *ngIf="selectedOperation === 'embeddings' && embeddingResults.length > 0" class="space-y-4 max-h-96 overflow-y-auto">
+          <div *ngFor="let result of embeddingResults" class="border rounded-lg p-4">
+            <h5 class="font-medium text-gray-900 mb-2">{{ result.word }}</h5>
+            <div class="text-xs text-gray-600 mb-2">
+              Vector ({{ result.vector.length }} dimensions):
+            </div>
+            <div class="bg-gray-50 rounded p-3 text-xs font-mono overflow-x-auto">
+              [{{ result.vector.slice(0, 10).join(', ') }}{{ result.vector.length > 10 ? ', ...' : '' }}]
+            </div>
+            <div *ngIf="result.subwords" class="mt-4">
+              <h6 class="text-sm font-medium text-gray-900 mb-2">Subword Contributions</h6>
+              <div class="space-y-2">
+                <div *ngFor="let subword of result.subwords" class="text-xs">
+                  <span class="font-mono">{{ subword.ngram }}</span>: [{{ subword.vector.slice(0, 5).join(', ') }}{{ subword.vector.length > 5 ? ', ...' : '' }}]
+                </div>
               </div>
             </div>
           </div>
-          <div *ngIf="!embeddingResults.length && !isProcessing" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
-            Results will appear here after processing
+        </div>
+
+        <!-- Similarity Results -->
+        <div *ngIf="selectedOperation === 'similarity' && similarityResult" class="space-y-4">
+          <div class="border rounded-lg p-4">
+            <h5 class="font-medium text-gray-900 mb-2">Similarity between "{{ word1 }}" and "{{ word2 }}"</h5>
+            <div class="text-lg font-semibold text-indigo-600">{{ similarityResult.score.toFixed(4) }}</div>
+            <div class="text-sm text-gray-600">Cosine similarity score (0-1)</div>
           </div>
+        </div>
+
+        <!-- Similar Words Results -->
+        <div *ngIf="selectedOperation === 'similar' && similarWords.length > 0" class="space-y-4 max-h-96 overflow-y-auto">
+          <div class="border rounded-lg p-4">
+            <h5 class="font-medium text-gray-900 mb-2">Words similar to "{{ targetWord }}"</h5>
+            <ul class="space-y-2">
+              <li *ngFor="let word of similarWords" class="flex justify-between">
+                <span class="font-mono">{{ word.word }}</span>
+                <span class="text-indigo-600">{{ word.score.toFixed(4) }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngIf="(!embeddingResults.length && selectedOperation === 'embeddings' && !isProcessing) ||
+                    (!similarityResult && selectedOperation === 'similarity' && !isProcessing) ||
+                    (!similarWords.length && selectedOperation === 'similar' && !isProcessing)"
+             class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+          Results will appear here after processing
         </div>
       </div>
     </div>
