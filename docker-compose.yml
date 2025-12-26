@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - insightface_models:/root/.insightface
+      - ./backend/registered_students.json:/app/registered_students.json
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4000"
+    environment:
+      - BACKEND_URL=http://backend:5000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+volumes:
+  insightface_models:
+
+networks:
+  app-network:
+    driver: bridge

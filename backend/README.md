@@ -13,15 +13,29 @@ Flask-based REST API for computer vision tasks using InsightFace.
 
 ## Setup
 
+### Option 1: Manual Setup
+
 1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 2. Run the server:
-```bash
-python app.py
-```
+   ```bash
+   python app.py
+   ```
+
+### Option 2: Docker Setup
+
+1. Build the Docker image:
+   ```bash
+   docker build -t cv-backend .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -p 5000:5000 cv-backend
+   ```
 
 The API will be available at `http://localhost:5000`
 

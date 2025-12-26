@@ -1,27 +1,90 @@
-# MetaTeam-AI-Labs
+# MetaTeam AI Labs
 
-A hands-on repository for MetaTeam's AI On-the-Job Training, featuring projects, experiments, and learning resources to build and explore AI skills.
+A comprehensive monorepo for MetaTeam's AI On-the-Job Training program, featuring hands-on projects, experiments, and learning resources focused on building practical AI skills.
 
-This is a monorepo containing both backend and frontend applications.
+This repository contains a full-stack application with computer vision capabilities, web interface, and shared libraries for AI-powered tools.
 
-## Structure
+## 🏗️ Project Structure
 
-- `backend/`: Flask API server for face recognition and attendance
-- `frontend/`: Angular web application
-- `libs/`: Shared libraries, including the Myanglish translator
+- **`backend/`**: Flask-based REST API server for computer vision tasks including face recognition, detection, and attendance tracking
+- **`frontend/`**: Modern Angular web application providing user interface for AI services
+- **`libs/`**: Shared libraries and utilities, including the Myanglish-Burmese translation library
 
-## Getting Started
+## 🚀 Quick Start
 
-### Backend
+### Prerequisites
 
-See [backend/README.md](backend/README.md) for setup instructions.
+- Docker and Docker Compose
+- Node.js 18+ (for frontend development)
+- Python 3.8+ (for backend development)
 
-### Frontend
+### Using Docker (Recommended)
 
-1. Navigate to `frontend/`
-2. Run `npm install`
-3. Run `ng serve` for development
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd MetaTeam-AI-Labs
+   ```
 
-### Libraries
+2. Start all services:
+   ```bash
+   docker-compose up --build
+   ```
 
-- `libs/myanglish-translator-js/`: JavaScript library for Myanglish-Burmese translation
+3. Access the application:
+   - Frontend: http://localhost:4200
+   - Backend API: http://localhost:5000
+
+### Manual Setup
+
+#### Backend Setup
+
+See [backend/README.md](backend/README.md) for detailed setup instructions.
+
+#### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   ng serve
+   ```
+
+4. Open http://localhost:4200 in your browser
+
+#### Libraries
+
+- **Myanglish Translator**: See [libs/myanglish-translator-js/readme.md](libs/myanglish-translator-js/readme.md) for usage and installation
+
+## 🎯 Features
+
+- **Computer Vision API**: Face detection, recognition, verification, and clustering
+- **Attendance System**: Student registration and automated attendance checking
+- **Web Interface**: User-friendly Angular application with multiple pages
+- **Translation Tools**: Myanglish-Burmese bidirectional translation
+- **Docker Support**: Easy deployment with containerization
+
+## 📚 Learning Resources
+
+This repository serves as a practical learning platform for:
+- Computer vision with InsightFace
+- Full-stack web development (Angular + Flask)
+- API design and RESTful services
+- Containerization with Docker
+- AI model deployment and management
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
+## 📄 License
+
+[Add license information here]
