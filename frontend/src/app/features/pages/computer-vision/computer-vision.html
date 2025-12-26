@@ -1,0 +1,624 @@
+<div class="min-h-screen bg-gray-50 pt-24">
+  <!-- Header -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <h1 class="text-3xl font-bold text-gray-900">InsightFace Computer Vision</h1>
+      <p class="mt-2 text-gray-600">Face Detection, Recognition, Verification & Attendance System</p>
+    </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Model Initialization -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-900">Model Initialization</h2>
+          <p class="text-gray-600 mt-1">Initialize the InsightFace model before processing images</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button
+            (click)="initializeModel()"
+            [disabled]="modelInitialized || isInitializing"
+            class="px-6 py-2 rounded-lg font-medium transition-colors duration-200
+                   {{ modelInitialized ? 'bg-green-100 text-green-800 cursor-not-allowed' :
+                      isInitializing ? 'bg-blue-100 text-blue-800 cursor-not-allowed' :
+                      'bg-blue-600 hover:bg-blue-700 text-white' }}">
+            {{ modelInitialized ? 'Model Ready' : isInitializing ? 'Initializing...' : 'Initialize Model' }}
+          </button>
+          <div *ngIf="isInitializing" class="flex items-center space-x-2">
+            <div class="w-32 bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                   [style.width.%]="initializationProgress"></div>
+            </div>
+            <span class="text-sm text-gray-600">{{ initializationProgress }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="bg-white rounded-lg shadow-md mb-6">
+      <div class="border-b border-gray-200">
+        <nav class="flex space-x-8 px-6" aria-label="Tabs">
+          <button
+            *ngFor="let tab of [
+              { id: 'detection', label: 'Face Detection', icon: '🔍' },
+              { id: 'recognition', label: 'Face Recognition', icon: '👤' },
+              { id: 'verification', label: 'Face Verification', icon: '⚖️' },
+              { id: 'clustering', label: 'Face Clustering', icon: '👥' },
+              { id: 'attendance', label: 'Attendance Check', icon: '📊' }
+            ]"
+            (click)="setActiveTab(tab.id)"
+            [class.active]="activeTab === tab.id"
+            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200
+                   {{ activeTab === tab.id ?
+                      'border-blue-500 text-blue-600' :
+                      'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
+            <span class="mr-2">{{ tab.icon }}</span>
+            {{ tab.label }}
+          </button>
+        </nav>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="p-6">
+        <!-- Face Detection Tab -->
+        <div *ngIf="activeTab === 'detection'" class="space-y-6">
+          <!-- Overview Section -->
+          <div class="bg-blue-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-blue-900 mb-4">Face Detection - Overview</h3>
+            <div class="space-y-4 text-blue-800">
+              <div>
+                <h4 class="font-semibold text-blue-900 mb-2">Function Description</h4>
+                <p class="text-sm">Detects faces in images using RetinaFace/SCRFD algorithms with high precision. Identifies face locations and facial landmarks.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-blue-900 mb-2">How to Use</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+                  <li>Click "Initialize Model" to load InsightFace</li>
+                  <li>Upload an image containing faces</li>
+                  <li>Click "Detect Faces" to process</li>
+                  <li>View detection results and download</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-blue-900 mb-2">Output Information</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                  <li>Number of faces detected</li>
+                  <li>Bounding boxes around each face</li>
+                  <li>Facial landmarks (eyes, nose, mouth)</li>
+                  <li>Detection confidence scores</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Upload Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Upload Image</h4>
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors h-64 flex flex-col justify-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="onFileSelected($event, 'detection')"
+                  class="hidden"
+                  id="detection-file">
+                <label for="detection-file" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                  <div *ngIf="!detectionPreview" class="space-y-2">
+                    <div class="text-4xl">📷</div>
+                    <div class="text-gray-600">Click to select image</div>
+                    <div class="text-sm text-gray-500">{{ detectionFile?.name || 'No file selected' }}</div>
+                  </div>
+                  <div *ngIf="detectionPreview" class="w-full h-full flex items-center justify-center">
+                    <img [src]="detectionPreview" alt="Preview" class="max-w-full max-h-full object-contain rounded">
+                  </div>
+                </label>
+              </div>
+
+              <button
+                (click)="processDetection()"
+                [disabled]="isProcessing['detection'] || !modelInitialized"
+                class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                {{ isProcessing['detection'] ? 'Processing...' : 'Detect Faces' }}
+              </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Results</h4>
+              <div *ngIf="detectionResult" class="space-y-4">
+                <div class="border rounded-lg overflow-hidden">
+                  <img [src]="detectionResult.image" *ngIf="detectionResult.image" alt="Detection result" class="w-full h-64 object-contain">
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <p class="font-medium text-green-600">{{ detectionResult.message }}</p>
+                  <div class="mt-2 space-y-1">
+                    <p *ngFor="let face of detectionResult.faces" class="text-sm text-gray-600">
+                      Face {{ face.id }}: Position {{ face.bbox.join(', ') }}, Confidence: {{ face.confidence.toFixed(3) }}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  (click)="downloadResult('detection')"
+                  class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                  Download Result
+                </button>
+              </div>
+              <div *ngIf="!detectionResult" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+                Results will appear here
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Face Recognition Tab -->
+        <div *ngIf="activeTab === 'recognition'" class="space-y-6">
+          <!-- Overview Section -->
+          <div class="bg-green-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-green-900 mb-4">Face Recognition & Attributes - Overview</h3>
+            <div class="space-y-4 text-green-800">
+              <div>
+                <h4 class="font-semibold text-green-900 mb-2">Function Description</h4>
+                <p class="text-sm">Uses ArcFace algorithm to extract 512-dimensional face embeddings and estimate age/gender attributes.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-green-900 mb-2">How to Use</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+                  <li>Initialize the InsightFace model</li>
+                  <li>Upload an image with faces</li>
+                  <li>Click "Analyze Faces" to process</li>
+                  <li>View age, gender, and embedding data</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-green-900 mb-2">Output Information</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                  <li>Age estimation (years)</li>
+                  <li>Gender classification (Male/Female)</li>
+                  <li>Face embeddings (512-dimensional vectors)</li>
+                  <li>Face bounding boxes</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-green-900 mb-2">Note</h4>
+                <p class="text-sm">Age and gender accuracy depends on image quality and lighting conditions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Upload Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Upload Image</h4>
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors h-64 flex flex-col justify-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="onFileSelected($event, 'recognition')"
+                  class="hidden"
+                  id="recognition-file">
+                <label for="recognition-file" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                  <div *ngIf="!recognitionPreview" class="space-y-2">
+                    <div class="text-4xl">👤</div>
+                    <div class="text-gray-600">Click to select image</div>
+                    <div class="text-sm text-gray-500">{{ recognitionFile?.name || 'No file selected' }}</div>
+                  </div>
+                  <div *ngIf="recognitionPreview" class="w-full h-full flex items-center justify-center">
+                    <img [src]="recognitionPreview" alt="Preview" class="max-w-full max-h-full object-contain rounded">
+                  </div>
+                </label>
+              </div>
+
+              <button
+                (click)="processRecognition()"
+                [disabled]="isProcessing['recognition'] || !modelInitialized"
+                class="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                {{ isProcessing['recognition'] ? 'Processing...' : 'Analyze Faces' }}
+              </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Analysis Results</h4>
+              <div *ngIf="recognitionResult" class="space-y-4">
+                <div class="border rounded-lg overflow-hidden">
+                  <img [src]="recognitionResult.image" *ngIf="recognitionResult.image" alt="Recognition result" class="w-full h-64 object-contain">
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <p class="font-medium text-green-600">{{ recognitionResult.message }}</p>
+                  <div class="mt-2 space-y-2">
+                    <div *ngFor="let face of recognitionResult.faces" class="bg-white rounded p-3 border">
+                      <p class="font-medium">Face {{ face.id }}</p>
+                      <p class="text-sm text-gray-600">Age: {{ face.age }} years</p>
+                      <p class="text-sm text-gray-600">Gender: {{ face.gender }}</p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  (click)="downloadResult('recognition')"
+                  class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                  Download Result
+                </button>
+              </div>
+              <div *ngIf="!recognitionResult" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+                Analysis results will appear here
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Face Verification Tab -->
+        <div *ngIf="activeTab === 'verification'" class="space-y-6">
+          <!-- Overview Section -->
+          <div class="bg-purple-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-purple-900 mb-4">Face Verification - Overview</h3>
+            <div class="space-y-4 text-purple-800">
+              <div>
+                <h4 class="font-semibold text-purple-900 mb-2">Function Description</h4>
+                <p class="text-sm">Compares face embeddings using cosine similarity to determine if two faces belong to the same person.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-purple-900 mb-2">How to Use</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+                  <li>Initialize the model</li>
+                  <li>Upload two images for comparison</li>
+                  <li>Click "Compare Faces" to process</li>
+                  <li>View similarity score and result</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-purple-900 mb-2">Output Information</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                  <li>Similarity score (0.0 to 1.0)</li>
+                  <li>Match determination (Same/Different)</li>
+                  <li>Face bounding boxes</li>
+                  <li>Side-by-side comparison image</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-purple-900 mb-2">Threshold</h4>
+                <p class="text-sm">Similarity ≥ 0.6 indicates same person (adjustable based on requirements).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Upload Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Upload Images</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 h-64">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-gray-400 transition-colors h-full flex flex-col justify-center">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    (change)="onFileSelected($event, 'verification1')"
+                    class="hidden"
+                    id="verification-file1">
+                  <label for="verification-file1" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                    <div *ngIf="!verificationPreview1" class="space-y-2">
+                      <div class="text-2xl">🖼️</div>
+                      <div class="text-sm font-medium">Image 1</div>
+                      <div class="text-xs text-gray-500">{{ verificationFile1?.name || 'Select' }}</div>
+                    </div>
+                    <div *ngIf="verificationPreview1" class="w-full h-full flex items-center justify-center">
+                      <img [src]="verificationPreview1" alt="Preview 1" class="max-w-full max-h-full object-contain rounded">
+                    </div>
+                  </label>
+                </div>
+
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-gray-400 transition-colors h-full flex flex-col justify-center">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    (change)="onFileSelected($event, 'verification2')"
+                    class="hidden"
+                    id="verification-file2">
+                  <label for="verification-file2" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                    <div *ngIf="!verificationPreview2" class="space-y-2">
+                      <div class="text-2xl">🖼️</div>
+                      <div class="text-sm font-medium">Image 2</div>
+                      <div class="text-xs text-gray-500">{{ verificationFile2?.name || 'Select' }}</div>
+                    </div>
+                    <div *ngIf="verificationPreview2" class="w-full h-full flex items-center justify-center">
+                      <img [src]="verificationPreview2" alt="Preview 2" class="max-w-full max-h-full object-contain rounded">
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <button
+                (click)="processVerification()"
+                [disabled]="isProcessing['verification'] || !modelInitialized"
+                class="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                {{ isProcessing['verification'] ? 'Comparing...' : 'Compare Faces' }}
+              </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Comparison Results</h4>
+              <div *ngIf="verificationResult" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="border rounded-lg overflow-hidden">
+                    <img [src]="verificationResult.image1" *ngIf="verificationResult.image1" alt="Image 1" class="w-full h-64 object-contain">
+                    <p class="text-center text-sm text-gray-600 p-2">Image 1</p>
+                  </div>
+                  <div class="border rounded-lg overflow-hidden">
+                    <img [src]="verificationResult.image2" *ngIf="verificationResult.image2" alt="Image 2" class="w-full h-64 object-contain">
+                    <p class="text-center text-sm text-gray-600 p-2">Image 2</p>
+                  </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <p class="text-lg font-medium"
+                     [class]="verificationResult.isSame ? 'text-green-600' : 'text-red-600'">
+                    {{ verificationResult.message }}
+                  </p>
+                  <div class="mt-2 text-sm text-gray-600">
+                    <p>Similarity Score: {{ verificationResult.similarity.toFixed(3) }}</p>
+                    <p>Threshold: 0.600</p>
+                  </div>
+                </div>
+                <button
+                  (click)="downloadResult('verification')"
+                  class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                  Download Result
+                </button>
+              </div>
+              <div *ngIf="!verificationResult" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+                Comparison results will appear here
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Face Clustering Tab -->
+        <div *ngIf="activeTab === 'clustering'" class="space-y-6">
+          <!-- Overview Section -->
+          <div class="bg-indigo-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-indigo-900 mb-4">Face Clustering - Overview</h3>
+            <div class="space-y-4 text-indigo-800">
+              <div>
+                <h4 class="font-semibold text-indigo-900 mb-2">Function Description</h4>
+                <p class="text-sm">Groups faces from multiple images using DBSCAN clustering on cosine distance of face embeddings.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-indigo-900 mb-2">How to Use</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+                  <li>Initialize the model</li>
+                  <li>Upload multiple images with faces</li>
+                  <li>Click "Cluster Faces" to process</li>
+                  <li>Download grouped face images</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-indigo-900 mb-2">Output Information</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                  <li>Total faces detected</li>
+                  <li>Number of clusters/groups</li>
+                  <li>Faces grouped by similarity</li>
+                  <li>ZIP download of grouped images</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-indigo-900 mb-2">Parameters</h4>
+                <p class="text-sm">eps=0.5 (cosine distance threshold), min_samples=1 for clustering.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Upload Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Upload Images (Multiple)</h4>
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  (change)="onFileSelected($event, 'clustering')"
+                  class="hidden"
+                  id="clustering-files">
+                <label for="clustering-files" class="cursor-pointer">
+                  <div class="space-y-2">
+                    <div class="text-4xl">📚</div>
+                    <div class="text-gray-600">Click to select multiple images</div>
+                    <div class="text-sm text-gray-500">{{ clusteringFiles.length }} files selected</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Image Previews -->
+              <div *ngIf="clusteringPreviews.length > 0" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div *ngFor="let preview of clusteringPreviews; let i = index" class="relative">
+                  <img [src]="preview" alt="Preview {{ i + 1 }}" class="w-full h-24 object-cover rounded border">
+                  <button
+                    (click)="removeClusteringFile(i)"
+                    class="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">
+                    ×
+                  </button>
+                </div>
+              </div>
+
+              <button
+                (click)="processClustering()"
+                [disabled]="isProcessing['clustering'] || !modelInitialized"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                {{ isProcessing['clustering'] ? 'Clustering...' : 'Cluster Faces' }}
+              </button>
+            </div>
+
+            <!-- Results Section -->
+            <div *ngIf="clusteringResult" class="space-y-4">
+              <h4 class="font-medium text-gray-900">Clustering Results</h4>
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <p class="font-medium text-indigo-600">{{ clusteringResult.message }}</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div *ngFor="let group of clusteringResult.groups; let i = index" class="bg-white border rounded-lg p-4">
+                  <h5 class="font-medium text-gray-900 mb-3">Group {{ i + 1 }} ({{ group.count }} faces)</h5>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <img *ngFor="let image of group.images"
+                         [src]="image"
+                         alt="Clustered face"
+                         class="w-full h-20 object-cover rounded border">
+                  </div>
+                </div>
+              </div>
+
+              <button
+                (click)="downloadResult('clustering')"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                Download Grouped Images
+              </button>
+            </div>
+
+            <div *ngIf="!clusteringResult" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500">
+              Clustering results will appear here
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance Check Tab -->
+        <div *ngIf="activeTab === 'attendance'" class="space-y-6">
+          <!-- Overview Section -->
+          <div class="bg-teal-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-teal-900 mb-4">Attendance Check - Overview</h3>
+            <div class="space-y-4 text-teal-800">
+              <div>
+                <h4 class="font-semibold text-teal-900 mb-2">Function Description</h4>
+                <p class="text-sm">Automatically detects and matches faces in classroom photos against registered student database.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-teal-900 mb-2">How to Use</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+                  <li>Register students with ID and photo</li>
+                  <li>Upload classroom photo</li>
+                  <li>Click "Check Attendance" to process</li>
+                  <li>View attendance report and statistics</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-teal-900 mb-2">Output Information</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                  <li>Present student list</li>
+                  <li>Absent student list</li>
+                  <li>Attendance percentage</li>
+                  <li>Annotated classroom photo</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-teal-900 mb-2">Matching Threshold</h4>
+                <p class="text-sm">Similarity ≥ 0.6 for positive identification. Results depend on photo quality and angles.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Registration -->
+          <div class="bg-white border rounded-lg p-6">
+            <h4 class="font-medium text-gray-900 mb-4">Student Registration</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                [(ngModel)]="studentId"
+                placeholder="Student ID (e.g., STU001)"
+                class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-gray-400 transition-colors h-32 flex flex-col justify-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="onFileSelected($event, 'student')"
+                  class="hidden"
+                  id="student-file">
+                <label for="student-file" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                  <div *ngIf="!studentPreview" class="text-sm text-gray-600">{{ studentFile?.name || 'Select student photo' }}</div>
+                  <div *ngIf="studentPreview" class="w-full h-full flex items-center justify-center">
+                    <img [src]="studentPreview" alt="Student preview" class="max-w-full max-h-full object-contain rounded">
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <button
+              (click)="registerStudent()"
+              class="mt-4 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+              Register Student
+            </button>
+
+            <div class="mt-4">
+              <h5 class="font-medium text-gray-900 mb-2">Registered Students:</h5>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let student of registeredStudents"
+                      class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">
+                  {{ student }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attendance Check -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Upload Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Classroom Photo</h4>
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors h-64 flex flex-col justify-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="onFileSelected($event, 'classroom')"
+                  class="hidden"
+                  id="classroom-file">
+                <label for="classroom-file" class="cursor-pointer w-full h-full flex flex-col justify-center">
+                  <div *ngIf="!classroomPreview" class="space-y-2">
+                    <div class="text-4xl">🏫</div>
+                    <div class="text-gray-600">Click to select classroom photo</div>
+                    <div class="text-sm text-gray-500">{{ classroomFile?.name || 'No file selected' }}</div>
+                  </div>
+                  <div *ngIf="classroomPreview" class="w-full h-full flex items-center justify-center">
+                    <img [src]="classroomPreview" alt="Classroom preview" class="max-w-full max-h-full object-contain rounded">
+                  </div>
+                </label>
+              </div>
+
+              <button
+                (click)="processAttendance()"
+                [disabled]="isProcessing['attendance'] || !modelInitialized"
+                class="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+                {{ isProcessing['attendance'] ? 'Checking...' : 'Check Attendance' }}
+              </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-4">
+              <h4 class="font-medium text-gray-900">Attendance Results</h4>
+              <div *ngIf="attendanceResult" class="space-y-4">
+                <div class="border rounded-lg overflow-hidden">
+                  <img [src]="attendanceResult.image" *ngIf="attendanceResult.image" alt="Attendance result" class="w-full h-64 object-contain">
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4 space-y-3">
+                  <div>
+                    <p class="font-medium text-green-600">Present: {{ attendanceResult.present.join(', ') }}</p>
+                    <p class="font-medium text-red-600">Absent: {{ attendanceResult.absent.join(', ') }}</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-2xl font-bold text-teal-600">{{ attendanceResult.rate.toFixed(1) }}%</p>
+                    <p class="text-sm text-gray-600">Attendance Rate</p>
+                  </div>
+                </div>
+                <button
+                  (click)="downloadResult('attendance')"
+                  class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                  Download Report
+                </button>
+              </div>
+              <div *ngIf="!attendanceResult" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+                Attendance results will appear here
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -33,6 +34,12 @@ export class Header {
   ];
 
   selectedLang = this.languages[0];
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  getSafeSvg(svg: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
+  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;

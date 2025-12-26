@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // @ts-ignore
-import translator, { ConvertMode } from '../../../../lib/myanglish-translator-js/src/index.js';
+import translator, { ConvertMode } from '../../../../../../libs/myanglish-translator-js/src/index.js';
 
 interface Language {
   code: string;
