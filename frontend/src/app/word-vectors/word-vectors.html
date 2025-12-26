@@ -1,0 +1,79 @@
+<div class="min-h-screen bg-gray-50 pt-24">
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <h1 class="text-3xl font-bold text-gray-900">Word Embeddings</h1>
+    <p class="mt-2 text-gray-600">Generate vector representations for words in sentences</p>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Overview Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Word Embeddings - Overview</h2>
+      <div class="space-y-4 text-gray-700">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Function Description</h3>
+          <p class="text-sm">Word embeddings transform words into numerical vectors that capture semantic meaning. Similar words have similar vector representations.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">How to Use</h3>
+          <ol class="list-decimal list-inside space-y-1 text-sm ml-4">
+            <li>Enter a sentence in the input field</li>
+            <li>Click "Generate Embeddings" to process</li>
+            <li>View vector representations for each word</li>
+          </ol>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Output Information</h3>
+          <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+            <li>Individual word vectors (typically 300-768 dimensions)</li>
+            <li>Vector values displayed as arrays</li>
+            <li>Word-by-word breakdown of the sentence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Input Section -->
+      <div class="space-y-4">
+        <h4 class="font-medium text-gray-900">Input Sentence</h4>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <textarea
+            [(ngModel)]="inputSentence"
+            rows="6"
+            class="w-full border border-gray-300 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+            placeholder="Enter a sentence here..."></textarea>
+
+          <button
+            (click)="generateEmbeddings()"
+            [disabled]="isProcessing || !inputSentence.trim()"
+            class="mt-4 w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
+            {{ isProcessing ? 'Generating...' : 'Generate Embeddings' }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="space-y-4">
+        <h4 class="font-medium text-gray-900">Embedding Results</h4>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div *ngIf="embeddingResults.length > 0" class="space-y-4 max-h-96 overflow-y-auto">
+            <div *ngFor="let result of embeddingResults" class="border rounded-lg p-4">
+              <h5 class="font-medium text-gray-900 mb-2">{{ result.word }}</h5>
+              <div class="text-xs text-gray-600 mb-2">
+                Vector ({{ result.vector.length }} dimensions):
+              </div>
+              <div class="bg-gray-50 rounded p-3 text-xs font-mono overflow-x-auto">
+                [{{ result.vector.slice(0, 10).join(', ') }}{{ result.vector.length > 10 ? ', ...' : '' }}]
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!embeddingResults.length && !isProcessing" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500 h-64 flex items-center justify-center">
+            Results will appear here after processing
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
