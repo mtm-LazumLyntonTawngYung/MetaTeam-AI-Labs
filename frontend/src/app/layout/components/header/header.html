@@ -13,20 +13,19 @@
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
 
-      <a href="#who-we" class="hover:text-indigo-600 transition">Who We Are?</a>
-      <a href="#about" class="hover:text-indigo-600 transition">About</a>
-      <a routerLink="/services" class="hover:text-indigo-600 transition">Services</a>
-      <a routerLink="/careers" class="hover:text-indigo-600 transition">Careers</a>
-      <a
+      <a i18n href="#who-we" class="hover:text-indigo-600 transition">Who We Are?</a>
+      <a i18n href="#about" class="hover:text-indigo-600 transition">About</a>
+      <a i18n routerLink="/services" class="hover:text-indigo-600 transition">Services</a>
+      <a i18n routerLink="/careers" class="hover:text-indigo-600 transition">Careers</a>
+      <a i18n
         routerLink="/contact"
         class="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 transition">
         Contact
       </a>
 
       <!-- Language Dropdown -->
-      <div class="relative" (mouseleave)="isLangOpen=false">
+      <div class="relative" (mouseenter)="isLangOpen=true" (mouseleave)="isLangOpen=false">
         <button
-          (click)="isLangOpen = !isLangOpen"
           class="flex items-center gap-1 px-3 py-2 border rounded-md hover:bg-gray-100 transition">
           <span [innerHTML]="getSafeSvg(selectedLang.svg)"></span>
           {{ selectedLang.name }}
@@ -66,12 +65,12 @@
   <!-- Mobile Navigation -->
   <div *ngIf="isMenuOpen" class="md:hidden border-t border-gray-200 bg-white">
     <nav class="flex flex-col gap-4 px-6 py-4 text-sm font-medium text-gray-700">
-      <a href="#who-we" (click)="closeMenu()">Who We Are?</a>
-      <a href="#about" (click)="closeMenu()">About</a>
-      <a routerLink="/services" (click)="closeMenu()">Services</a>
-      <a routerLink="/computer-vision" (click)="closeMenu()">Computer Vision</a>
-      <a routerLink="/careers" (click)="closeMenu()">Careers</a>
-      <a
+      <a i18n href="#who-we" (click)="closeMenu()">Who We Are?</a>
+      <a i18n href="#about" (click)="closeMenu()">About</a>
+      <a i18n routerLink="/services" (click)="closeMenu()">Services</a>
+      <a i18n routerLink="/computer-vision" (click)="closeMenu()">Computer Vision</a>
+      <a i18n routerLink="/careers" (click)="closeMenu()">Careers</a>
+      <a i18n
         routerLink="/contact"
         (click)="closeMenu()"
         class="rounded-md bg-indigo-600 px-4 py-2 text-white text-center">
@@ -80,7 +79,7 @@
 
       <!-- Mobile Language Dropdown -->
       <div class="mt-2">
-        <label class="block text-gray-500 mb-1">Language</label>
+        <label i18n class="block text-gray-500 mb-1">Language</label>
         <select [(ngModel)]="selectedLang" class="w-full border rounded-md px-2 py-1">
           <option *ngFor="let lang of languages" [ngValue]="lang">
             {{ lang.name }}
