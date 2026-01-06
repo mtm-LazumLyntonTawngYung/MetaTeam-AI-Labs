@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="my" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="9081389459800982992" datatype="html">
+        <source> Contact Us </source>
+        <target> ဆက်သွယ်ရန် </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5251447063183170134" datatype="html">
+        <source> Have a question or want to work with us? Fill out the form below or reach us through our contact details. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9127604588498960753" datatype="html">
+        <source>Subject</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8066608938393600549" datatype="html">
+        <source>Message</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7074177466126760318" datatype="html">
+        <source> Send Message </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8629147938069206325" datatype="html">
+        <source>Office Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3262236020277300799" datatype="html">
+        <source>Phone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/contact/contact.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4803097642408163756" datatype="html">
+        <source> Japan-Standard IT Solutions <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-indigo-600&quot;&gt;"/>Powered by Myanmar Talent<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">7,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8551371730338445566" datatype="html">
+        <source> Since 2014, we have been a trusted partner in the outsourcing industry, delivering high-quality, customized software solutions to the Japanese market. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5611519164385394411" datatype="html">
+        <source> Our Services </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/services/services.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3031627679721116985" datatype="html">
+        <source>AI Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9007693215647655226" datatype="html">
+        <source>A Trusted Partner Since 2014</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1484381725199357274" datatype="html">
+        <source> Our expertise spans web &amp; mobile app development, hosting &amp; domain management, packaged software, and comprehensive Business Process Outsourcing (BPO). </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9209962486141430006" datatype="html">
+        <source>Years Serving Japanese Enterprises</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3398353192845179101" datatype="html">
+        <source>Experience</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="524150294818971224" datatype="html">
+        <source>Our Mission</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8617023547147316391" datatype="html">
+        <source> To empower businesses in Japan and beyond by delivering innovative, reliable, and high-quality IT solutions, while fostering local talent and creating sustainable value for all stakeholders. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1631914994548716663" datatype="html">
+        <source>Our Vision</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5597504774219377993" datatype="html">
+        <source> To be Myanmar’s leading provider of Japan-standard IT solutions and digital innovation. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3158461083121805854" datatype="html">
+        <source>TeamTech Philosophy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7840644152706568738" datatype="html">
+        <source> At the intersection of Teamwork and Technology lies TeamTech. We create a more connected world by making global collaboration effortless. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3564988184326937991" datatype="html">
+        <source> Our goal is to enhance productivity and foster a culture of happiness in the workplace, paving the way for worldwide innovation. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4458144055859465362" datatype="html">
+        <source>Our Core Values: TEAMS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2286494898080570401" datatype="html">
+        <source>Thanks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">103,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7399687643583080879" datatype="html">
+        <source>We cultivate a culture of appreciation, expressing gratitude openly and sincerely.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8660789270969799469" datatype="html">
+        <source>Engine</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8374682360338572451" datatype="html">
+        <source>Every individual is an engine driving the team forward with pride and responsibility.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7012450864833051133" datatype="html">
+        <source>All-inclusive</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">113,114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6986445750014267148" datatype="html">
+        <source>We act selflessly, respecting diverse perspectives for the benefit of all.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7973033245902755298" datatype="html">
+        <source>Masterpiece</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8705720830289968538" datatype="html">
+        <source>We pursue excellence, treating every task as a craft.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4613338085351943838" datatype="html">
+        <source>Stock</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4097194024408270084" datatype="html">
+        <source>We build lasting relationships and shared knowledge through collaboration.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">124,125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2991866013172359331" datatype="html">
+        <source>High-Quality Software Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">133,134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4126357098747119403" datatype="html">
+        <source> With a robust workforce of <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-semibold text-gray-900&quot;&gt;"/>81 technical experts<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, we combine modern technology with rigorous quality standards to deliver software products that excel in performance and reliability. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">135,138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2130557129847644294" datatype="html">
+        <source>Our App Portfolio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">145,146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8376147672626503913" datatype="html">
+        <source> Explore some of our most impactful applications built for clients. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">147,148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9164710695847910327" datatype="html">
+        <source>Myanglish Translator</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">156,157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="612103362731074584" datatype="html">
+        <source> Showcase your company&apos;s AI and machine learning expertise with a high-performance translator supporting multiple languages. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7790068354311057249" datatype="html">
+        <source> View App </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">161</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">184</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">195</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1611664826124566064" datatype="html">
+        <source>Computer Vision</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">170,171</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1979256379168098814" datatype="html">
+        <source>Advanced AI-powered face detection, recognition, verification, and automated attendance tracking system.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">171,172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7736126056214907738" datatype="html">
+        <source>App 1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">179</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2326745573178145691" datatype="html">
+        <source>Word Analogy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">181,182</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5748682016338921620" datatype="html">
+        <source>High-performance app for seamless team collaboration and productivity.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">182,183</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">193,194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3840894123915735659" datatype="html">
+        <source>Ai Grammar Detection</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/homepage/homepage.html</context>
+          <context context-type="linenumber">192,193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5876402839837671381" datatype="html">
+        <source> We deliver innovative software, AI, and digital solutions for businesses seeking growth and efficiency. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/pages/services/services.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7577412922207062617" datatype="html">
+        <source>Who We Are?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1726363342938046830" datatype="html">
+        <source>About</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7143579180750436311" datatype="html">
+        <source>Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5779770381601735038" datatype="html">
+        <source>Careers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8478716983552743608" datatype="html">
+        <source> Contact </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/components/header/header.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

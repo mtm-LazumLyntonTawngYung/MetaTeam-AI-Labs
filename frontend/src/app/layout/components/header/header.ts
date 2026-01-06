@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -34,6 +36,12 @@ export class Header {
 
   selectedLang = this.languages[0];
 
+  constructor(private sanitizer: DomSanitizer, private translate: TranslateService) {}
+
+  getSafeSvg(svg: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
+  }
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -45,6 +53,6 @@ export class Header {
   selectLanguage(lang: any): void {
     this.selectedLang = lang;
     this.isLangOpen = false;
-    // You can add language switching logic here
+    this.translate.use(lang.code);
   }
 }

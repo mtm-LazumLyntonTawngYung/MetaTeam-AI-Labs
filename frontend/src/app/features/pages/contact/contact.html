@@ -2,10 +2,10 @@
 
   <!-- Hero Section -->
   <div class="max-w-5xl mx-auto text-center mb-16">
-    <h1 class="text-5xl font-extrabold text-gray-900">
+    <h1 i18n class="text-5xl font-extrabold text-gray-900">
       Contact Us
     </h1>
-    <p class="mt-4 text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+    <p i18n class="mt-4 text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
       Have a question or want to work with us? Fill out the form below or reach us through our contact details.
     </p>
   </div>
@@ -16,30 +16,30 @@
     <!-- Form -->
     <form (ngSubmit)="submitForm()" class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Name</label>
+        <label i18n class="block text-gray-700 font-medium mb-1">Name</label>
         <input type="text" [(ngModel)]="formData.name" name="name" required
                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
 
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Email</label>
+        <label i18n class="block text-gray-700 font-medium mb-1">Email</label>
         <input type="email" [(ngModel)]="formData.email" name="email" required
                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
 
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Subject</label>
+        <label i18n class="block text-gray-700 font-medium mb-1">Subject</label>
         <input type="text" [(ngModel)]="formData.subject" name="subject" required
                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
       </div>
 
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Message</label>
+        <label i18n class="block text-gray-700 font-medium mb-1">Message</label>
         <textarea [(ngModel)]="formData.message" name="message" rows="5" required
                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
       </div>
 
-      <button type="submit"
+      <button i18n type="submit"
               class="bg-indigo-600 text-white font-medium px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
         Send Message
       </button>
@@ -48,15 +48,15 @@
     <!-- Contact Info -->
     <div class="flex flex-col justify-center space-y-8">
       <div>
-        <h2 class="text-2xl font-bold text-indigo-600 mb-2">Office Address</h2>
+        <h2 i18n class="text-2xl font-bold text-indigo-600 mb-2">Office Address</h2>
         <p class="text-gray-700">123 AI Street, Yangon, Myanmar</p>
       </div>
       <div>
-        <h2 class="text-2xl font-bold text-indigo-600 mb-2">Email</h2>
+        <h2 i18n class="text-2xl font-bold text-indigo-600 mb-2">Email</h2>
         <p class="text-gray-700">info@metateam.com</p>
       </div>
       <div>
-        <h2 class="text-2xl font-bold text-indigo-600 mb-2">Phone</h2>
+        <h2 i18n class="text-2xl font-bold text-indigo-600 mb-2">Phone</h2>
         <p class="text-gray-700">+95 9 123 456 789</p>
       </div>
       <div>
